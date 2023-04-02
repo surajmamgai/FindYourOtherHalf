@@ -1,0 +1,9 @@
+.box_cover{
+    border: 2px solid black;
+    padding: 5px;
+    cursor: pointer;
+}
+.box_cover:hover{
+    background-color: white;
+    color:blue
+}

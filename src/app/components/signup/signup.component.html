@@ -1,0 +1,71 @@
+<section class="h-100 h-custom" style="background-color: #fafffe;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-8 col-xl-6">
+        <div class="card rounded-3">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img3.webp" class="w-100"
+            style="border-top-left-radius: .3rem; border-top-right-radius: .3rem;" alt="Profile Photo">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Registration Info</h3>
+            <form class="px-md-2" (ngSubmit)="submit_form()" enctype='multipart/form-data'>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" [(ngModel)]="username" name="username" class="form-control" required />
+              </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="name">Name</label>
+                <input type="text" [(ngModel)]="name" name="name" class="form-control" required />
+              </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="name">Password</label>
+                <input type="password" [(ngModel)]="password" name="password" class="form-control" required />
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <label class="form-label" for="name">Gender</label><br>
+                  <select class="select" id="gender" name="gender" [(ngModel)]="gender" required>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                  </select>
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline datepicker">
+                    <label for="dob" class="form-label">Date of Birth</label>
+                    <input name="dob" [(ngModel)]="dob" type="date" class="form-control" id="dob" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="education">Education</label>
+                <input type="text" name="education" [(ngModel)]="education" id="education" class="form-control"
+                  />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="occupation">Occupation</label>
+                <input type="text" id="occupation" name="occupation" [(ngModel)]="occupation" class="form-control"
+                  />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="height">Height (in cm)</label>
+                <input type="number" name="height" [(ngModel)]="height" id="height" class="form-control" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="profile_photo">Profile Photo</label>
+                <input  type="file" id="profile_photo" name="photo" [(ngModel)]="photo" (change)="readUrl($event)" class="form-control"  />
+              </div>
+
+              <button type="submit" class="btn btn-success btn-lg mb-1">Submit</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

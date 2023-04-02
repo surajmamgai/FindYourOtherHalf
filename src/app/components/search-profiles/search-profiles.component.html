@@ -1,0 +1,151 @@
+<div *ngIf="isLoading" class="loading-indicator">
+    <div class="d-flex justify-content-center text-primary">
+      <div class="spinner-border" role="status">
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!isLoading">
+<div class="container mt-3">
+    <!-- <h2 class="text-center text-success mb-3">Discover Profiles</h2> -->
+    <div class="row">
+        <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown"
+            data-bs-auto-close="false" aria-expanded="true">
+                Filter
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                <li><div class="btn-group dropend">
+                <button class="dropdown-item dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">Age</button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <li><button (click)="set_age_filter_type('gt')" class="dropdown-item" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#Modal1">Greater Than</button></li>
+                            <li><button (click)="set_age_filter_type('lt')" class="dropdown-item" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#Modal1">Less Than</button></li>   
+                        </ul>   
+            
+                </div></li>
+                <li><button class="dropdown-item" type="button" data-bs-toggle="modal"
+                        data-bs-target="#Modal2">Education</button></li>
+                <li><button class="dropdown-item" type="button" data-bs-toggle="modal"
+                        data-bs-target="#Modal3">Occupation</button></li>
+                <li><div class="btn-group dropend">
+                <button class="dropdown-item dropdown-toggle" type="button" id="dropdownMenu3" data-bs-toggle="dropdown" aria-expanded="false">Height</button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
+                                <li><button (click)="set_height_filter_type('gt')" class="dropdown-item" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#Modal4">Greater Than</button></li>
+                            <li><button (click)="set_height_filter_type('lt')" class="dropdown-item" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#Modal4">Less Than</button></li>   
+                        </ul>   
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="modal fade" id="Modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Age Filter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <label for="customRange1" class="form-label">Age</label>
+                            <input type="range" class="form-range" id="customRange1" (input)="onAgeChange($event)" />
+                            <div>{{ age }}</div>
+                          </form>
+                          <div class="modal-footer">
+                            <button type="button"(click)="user_show()" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
+                          </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="Modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Education Filter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-check" *ngFor="let ed of available_education">
+                            <input class="form-check-input" type="checkbox" [value]="ed" id="defaultCheck1" [(ngModel)]="education[ed]">
+                            <label class="form-check-label" for="defaultCheck1">
+                              {{ed}}
+                            </label>
+                          </div>                          
+                          <div class="modal-footer">
+                            <button type="button"(click)="user_show()" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
+                          </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="Modal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Occupation Filter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-check" *ngFor="let oc of available_occupation">
+                            <input class="form-check-input" type="checkbox" [value]="oc" id="defaultCheck1" [(ngModel)]="occupation[oc]">
+                            <label class="form-check-label" for="defaultCheck1">
+                              {{oc}}
+                            </label>
+                          </div>                          
+                          <div class="modal-footer">
+                            <button type="button"(click)="user_show()" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
+                          </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="modal fade" id="Modal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Height Filter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <label for="customRange1" class="form-label">Height</label>
+                            <input type="range" class="form-range"  min="100" max="200" id="customRange1" (input)="onHeightChange($event)" />
+                            <div>{{ height }}</div>
+                          </form>
+                          <div class="modal-footer">
+                            <button type="button"(click)="user_show()" class="btn btn-primary" data-bs-dismiss="modal">Apply</button>
+                          </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 mt-3" *ngFor="let item of items">
+            <div class="card">
+                <img src="{{item.photo}}" class="profile-photo card-img-top" (error)="setDefaultImage(item)">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.name}}</h5>
+                    <p class="card-text">Age: {{item.age}}</p>
+                    <ul class="list-unstyled">
+                        <li>Profession: {{item.occupation}}</li>
+                        <li>Education: {{item.education}}</li>
+                        <li>Height: {{item.height}}</li>
+                    </ul>
+                    <button (click)="send_interest(item)" class="btn btn-primary m-1">Interested</button>
+                    <button (click)="view_profile(item)" class="btn btn-success m-1">View Profile</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
