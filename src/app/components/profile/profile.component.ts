@@ -39,7 +39,7 @@ export class ProfileComponent {
 
   show_profile(){
     this.editable = false
-    let url = 'http://localhost:5000/view-profile/';
+    let url = 'https://fyoh-backend.onrender.com/view-profile/';
     console.log(this.user)
     this.http.post(url, { viewer_username: this.user.username, profile_username: this.route.snapshot.paramMap.get("username") }, { withCredentials: true }).subscribe({
       next: (response: any) => {
@@ -54,7 +54,7 @@ export class ProfileComponent {
 
 
   send_interest(user: any){
-    let url = 'http://localhost:5000/send-request/'; 
+    let url = 'https://fyoh-backend.onrender.com/send-request/'; 
     this.http.post(url, {sender_username : this.user.username, receiver_username: user.username, status: 0}, { withCredentials: true }).subscribe({
       next: (response: any) => {
         console.log(response)
@@ -83,7 +83,7 @@ export class ProfileComponent {
 }
 
 update_profile() {
-    let url = 'http://localhost:5000/update-user/';
+    let url = 'https://fyoh-backend.onrender.com/update-user/';
     
     this.http.post(url, {username: this.user.username, name: this.name, education:this.education, occupation:this.occupation, height:this.height, location: this.location, photo:this.photo }).subscribe({
       next: (response: any) => {

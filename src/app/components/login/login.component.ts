@@ -17,7 +17,7 @@ export class LoginComponent {
   password: string
 
   submit_form() {
-    let url = 'http://localhost:5000/login/';
+    let url = 'https://fyoh-backend.onrender.com/login/';
 
     this.http.post(url, { username: this.username, password: this.password }).subscribe({
       next: (response: any) => {
@@ -32,7 +32,7 @@ export class LoginComponent {
   }
 
   set_logged_in_user() {
-    const set_logged_in_user_url = 'http://localhost:5000/logged-in-user/';
+    const set_logged_in_user_url = 'https://fyoh-backend.onrender.com/logged-in-user/';
     this.http.post(set_logged_in_user_url, {}, { withCredentials: true }).subscribe({
       next: (response: any) => {
         console.log(response);

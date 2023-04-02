@@ -58,7 +58,7 @@ export class SearchProfilesComponent {
                 education: education_array.length? education_array : undefined,
                 occupation: occupation_array.length? occupation_array : undefined
               };
-            let url = 'http://localhost:5000/user-show/';
+            let url = 'https://fyoh-backend.onrender.com/user-show/';
             this.http.post(url, this.payload, { withCredentials: true }).subscribe({
               next: (response: any) => {
                 this.items = response.data
@@ -72,7 +72,7 @@ export class SearchProfilesComponent {
         }
   
   send_interest(user: any){
-    let url = 'http://localhost:5000/send-request/'; 
+    let url = 'https://fyoh-backend.onrender.com/send-request/'; 
     const currentTime = new Date();
     this.http.post(url, {sender_username : this.user.username, receiver_username: user.username, status: 0, timestamp: currentTime.toISOString()
     }, { withCredentials: true }).subscribe({

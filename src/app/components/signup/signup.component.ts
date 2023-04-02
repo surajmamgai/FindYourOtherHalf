@@ -52,7 +52,7 @@ export class SignupComponent {
   submit_form() {
     console.log(this.username, this.name, this.education, this.occupation, this.password, this.gender, this.dob, this.height, this.photo);
     this.age = this.calculateAge()
-    let url = 'http://localhost:5000/add-user/';
+    let url = 'https://fyoh-backend.onrender.com/add-user/';
 
     this.http.post(url, { username: this.username, name: this.name, gender:this.gender, dob:this.dob, education:this.education, occupation:this.occupation, height:this.height, age: this.age, password: this.password ,photo:this.photo }).subscribe({
       next: (response: any) => {
