@@ -21,7 +21,7 @@ export class LoginComponent {
 
     this.http.post(url, { username: this.username, password: this.password }).subscribe({
       next: (response: any) => {
-        this.Cook.set('token', response.token)
+        this.Cook.set('token', response.token, {secure:true})
         this.service.is_login = true
         this.set_logged_in_user()
       },
