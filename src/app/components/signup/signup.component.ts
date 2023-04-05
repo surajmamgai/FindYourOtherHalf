@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import swal from 'sweetalert2'; 
 
 @Component({
   selector: 'app-signup',
@@ -58,8 +59,12 @@ export class SignupComponent {
       next: (response: any) => {
         console.log(response)
         this.message = response.message
-        if(response.status == 400) window.alert("Username Already Taken")
-        else this.router.navigateByUrl('/login')
+        if(response.status == 400) swal.fire('Username Already Taken !')
+        else
+        {
+          swal.fire('Registered Successfully !')
+          this.router.navigateByUrl('/login')
+        }
       },
       error: (error: any) => {
         console.log(error)
