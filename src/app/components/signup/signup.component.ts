@@ -58,7 +58,8 @@ export class SignupComponent {
       next: (response: any) => {
         console.log(response)
         this.message = response.message
-        this.router.navigateByUrl('/login')
+        if(response.status == 400) window.alert("Username Already Taken")
+        else this.router.navigateByUrl('/login')
       },
       error: (error: any) => {
         console.log(error)
