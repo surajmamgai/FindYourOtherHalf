@@ -24,8 +24,7 @@ export class LoginComponent {
         this.Cook.set('token', response.token, 
         {
           expires: new Date(Date.now() + 3600000), // expires in 1 hour
-          secure: true,
-          httpOnly: true
+          secure: true
         })
         this.service.is_login = true
         this.set_logged_in_user()
