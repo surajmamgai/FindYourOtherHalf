@@ -19,7 +19,7 @@ export class LoginComponent {
   submit_form() {
     let url = 'https://fyoh-backend.onrender.com/login/';
 
-    this.http.post(url, { username: this.username, password: this.password }, { withCredentials: true })).subscribe({
+    this.http.post(url, { username: this.username, password: this.password }, { withCredentials: true }).subscribe({
       next: (response: any) => {
         this.Cook.set('token', response.token, 
         {
